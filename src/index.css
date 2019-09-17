@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+li {
+  display: inline-block;
+}
+
+.nav-txt-white{
+  color: white;
+  font-weight: 600;
+  text-decoration: none
+}
+
+.person-info-block{
+  border: solid 2px rgb(34, 51, 59);
+  padding: 5px 15px;
+  text-align: center;
+  width: 40vw;
+  margin:  20px auto;
+  border-radius: 5px
+}
+
+input {
+  border: none;
+  padding: 5px 12px;
+  color: rgba(0,0,0, .5);
+  letter-spacing: 1px;
+  outline: none;
+  border-radius: 5px
+}
+
+button {
+  border: none;
+  padding: 4px 12px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px
+}
+
+.person-info-block input{
+  margin: 0 20px
+}
+
+.app-logo-person{
+  animation: person-logo-spin infinite 1s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@keyframes person-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.info-card{
+  border: 1px solid rgba(0,0,0,.3);
+  /* display: flex; */
+  padding: 8px 12px;
+  margin: 3em auto;
+  width: 20vw;
+  box-shadow: 1px 3px 5px rgba(0,0,0,.3);
+  border-radius: 10px
+}
