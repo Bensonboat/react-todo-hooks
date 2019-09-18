@@ -6,7 +6,7 @@ function Task({task, index, completeTask, removeTaskPass}) {
     return (
         <div 
             className='task' 
-            style={{ textDecoration: task.completed ? "line-through" : "", opacity: task.completed ? '1' : '.3' }}
+            style={{ textDecoration: task.completed ? "line-through" : "", opacity: task.completed ? '.3' : '1' }}
         >
             {task.title}
             <button onClick={() => completeTask(index)}>Complete</button>

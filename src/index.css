@@ -76,3 +76,33 @@ button {
   box-shadow: 1px 3px 5px rgba(0,0,0,.3);
   border-radius: 10px
 }
+
+.edit-info-input{
+  display: block;
+  margin: 10px auto
+}
+
+/* .hide-edit-person-card{
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 10px
+} */
+
+.person-info-card{
+  margin: 0 auto;
+  width: 40vw;
+  opacity: .1;
+  transition: .3s
+}
+
+.person-info-card:hover{
+  opacity: 1;
+  cursor: pointer;
+}

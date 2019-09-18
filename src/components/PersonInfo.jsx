@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import '../index.css'
 
 
-function ShowInfo({ info, img }) {
+function ShowInfo({ info, removeInfoCard, index, getEditInfoCard }) {
     return (
-        <div style={{margin: '0 auto', width: '80vw'}}>
+        <div className='person-info-card'>
             <div className='info-card'>
                 <img src="/logo192.png" alt="" style={{ width: '50px', height: '50px' }} className='app-logo-person' />
                 <br />
@@ -12,7 +12,19 @@ function ShowInfo({ info, img }) {
                 <div>Name: {info.name}</div>
                 <div>Contact: {info.email}</div>
                 <div>Saying: {info.intro}</div>
-                <button style={{marginTop: '20px'}}>Edit</button>
+                <button onClick={() => {
+                    if (window.confirm('Sure?')) {
+                        removeInfoCard(index)
+                    } else {
+                        return
+                    }
+                }} style={{ marginTop: '20px', backgroundColor: 'darkred', color: 'white' }}>Delete</button>
+                <button onClick={() => {
+                    document.getElementById('edit_person_card').style.display = 'block'
+                    getEditInfoCard(index)
+                }}>Edit</button>
+                <br />
+                <br />
             </div>
         </div>
     )
@@ -33,8 +45,32 @@ function PersonInfo() {
     ]);
 
     const addNewInfo = info => {
-        const newTasks = [...people, info];
-        setPerson(newTasks);
+        const newInfo = [...people, info];
+        setPerson(newInfo);
+    }
+
+    const removeInfoCard = index => {
+        const newInfo = [...people]
+        newInfo.splice(index, 1);
+        setPerson(newInfo)
+    }
+
+    const getEditInfoCard = index => {
+        const editedInfo = [...people]
+        document.getElementById('editing_name').value = editedInfo[index].name
+        document.getElementById('editing_email').value = editedInfo[index].email
+        document.getElementById('editing_intro').value = editedInfo[index].intro
+    }
+
+    const updatePersonInfo = index => {
+        const newInfo = [...people];
+
+        // 
+        //  STILL WORKING ON IT
+        // 
+        newInfo[index].name = document.getElementById('editing_name').value
+        newInfo[index].email = document.getElementById('editing_email').value
+        newInfo[index].intro = document.getElementById('editing_intro').value
     }
 
     return (
@@ -46,8 +82,14 @@ function PersonInfo() {
                 <ShowInfo
                     info={value}
                     key={index}
+                    removeInfoCard={removeInfoCard}
+                    index={index}
+                    getEditInfoCard={getEditInfoCard}
+
                 />
             ))}
+                <EditPersonCard updatePersonInfo={updatePersonInfo}></EditPersonCard>
+
             </div>
         </div>
     )
@@ -62,7 +104,10 @@ function CreateNewInfo({ addNewInfo }) {
 
     const handleIndoSubmit = e => {
         e.preventDefault();
-        if (info.name === '' || info.email === '' || info.intro === '') return;
+        if (info.name === '' || info.email === '' || info.intro === '') {
+            alert('Complete The Form')
+            return
+        };
 
         addNewInfo(info);
         setInfo({
@@ -105,6 +150,24 @@ function CreateNewInfo({ addNewInfo }) {
                 <button onClick={handleIndoSubmit}>Click</button>
             </div>
         </form>
+    )
+}
+
+function EditPersonCard({ updatePersonInfo }) {
+    return (
+        <div style={{}}>
+            <div id='edit_person_card' style={{ border: 'solid 1px rgba(0,0,0,.3)', width: '400px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', display: 'none' }}>
+                <input type="text" className='edit-info-input' placeholder='text' id='editing_name' />
+                <input type="text" className='edit-info-input' placeholder='text' id='editing_email' />
+                <input type="text" className='edit-info-input' placeholder='text' id='editing_intro' />
+                <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+                    <button onClick={updatePersonInfo}>Confirm</button>
+                    <button onClick={() => {
+                        document.getElementById('edit_person_card').style.display = 'none'
+                    }}>Cancel</button>
+                </div>
+            </div>
+        </div>
     )
 }
 
