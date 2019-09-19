@@ -35,12 +35,14 @@ function PersonInfo() {
         {
             name: 'saiyan',
             email: 'ssh@gmail.com',
-            intro: 'save the earth'
+            intro: 'save the earth',
+            id: 1
         },
         {
             name: 'gohan',
             email: 'han@gmail.com',
-            intro: 'someone needs my help'
+            intro: 'someone needs my help',
+            id: 2
         }
     ]);
 
@@ -68,9 +70,18 @@ function PersonInfo() {
         // 
         //  STILL WORKING ON IT
         // 
-        newInfo[index].name = document.getElementById('editing_name').value
-        newInfo[index].email = document.getElementById('editing_email').value
-        newInfo[index].intro = document.getElementById('editing_intro').value
+
+        newInfo[index] = {
+            name: document.getElementById('editing_name').value,
+            email: document.getElementById('editing_email').value,
+            intro: document.getElementById('editing_intro').value
+        }
+
+        setPerson(newInfo);
+        document.getElementById('edit_person_card').style.display = 'none'
+        // newInfo[index].name = document.getElementById('editing_name').value
+        // newInfo[index].email = document.getElementById('editing_email').value
+        // newInfo[index].intro = document.getElementById('editing_intro').value
     }
 
     return (
@@ -79,17 +90,20 @@ function PersonInfo() {
                 addNewInfo={addNewInfo}
             />
             <div>{people.map((value, index) => (
-                <ShowInfo
-                    info={value}
-                    key={index}
-                    removeInfoCard={removeInfoCard}
-                    index={index}
-                    getEditInfoCard={getEditInfoCard}
-
-                />
+                <div key={index}>
+                    <ShowInfo
+                        info={value}
+                        key={index}
+                        removeInfoCard={removeInfoCard}
+                        index={index}
+                        getEditInfoCard={getEditInfoCard}
+                    />
+                    <EditPersonCard
+                        updatePersonInfo={updatePersonInfo}
+                        index={index}
+                    />
+                </div>
             ))}
-                <EditPersonCard updatePersonInfo={updatePersonInfo}></EditPersonCard>
-
             </div>
         </div>
     )
@@ -153,7 +167,7 @@ function CreateNewInfo({ addNewInfo }) {
     )
 }
 
-function EditPersonCard({ updatePersonInfo }) {
+function EditPersonCard({ updatePersonInfo, index }) {
     return (
         <div style={{}}>
             <div id='edit_person_card' style={{ border: 'solid 1px rgba(0,0,0,.3)', width: '400px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', display: 'none' }}>
@@ -161,7 +175,7 @@ function EditPersonCard({ updatePersonInfo }) {
                 <input type="text" className='edit-info-input' placeholder='text' id='editing_email' />
                 <input type="text" className='edit-info-input' placeholder='text' id='editing_intro' />
                 <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
-                    <button onClick={updatePersonInfo}>Confirm</button>
+                    <button onClick={() => updatePersonInfo(index)}>Confirm</button>
                     <button onClick={() => {
                         document.getElementById('edit_person_card').style.display = 'none'
                     }}>Cancel</button>
