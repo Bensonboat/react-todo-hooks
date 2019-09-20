@@ -187,3 +187,4 @@ function EditPersonCard({ updatePersonInfo, index }) {
 }
 
 export default PersonInfo
+
