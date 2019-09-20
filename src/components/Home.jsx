@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import Todo from './Todo'
 import App from '../App'
 import PersonInfo from './PersonInfo'
+import ApiComment from './ApiComment'
 import '../index.css'
 
 function Index() {
@@ -27,11 +28,15 @@ function Home() {
                 <div>
                     <Link to='/person-info' className='nav-txt-white'>Info</Link>
                 </div>
+                <div>
+                    <Link to='/api-comment' className='nav-txt-white'>Comment</Link>
+                </div>
             </div>
             <Route path='/' exact component={Index}></Route>
             <Route path='/todo-list' component={Todo}></Route>
             <Route path='/react-index' component={App}></Route>
             <Route path='/person-info' component={PersonInfo}></Route>
+            <Route path='/api-comment' component={ApiComment}></Route>
         </Router>
     )
 }
