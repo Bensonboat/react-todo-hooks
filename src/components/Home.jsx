@@ -4,6 +4,7 @@ import Todo from './Todo'
 import App from '../App'
 import PersonInfo from './PersonInfo'
 import ApiComment from './ApiComment'
+import EmployeeApi from './EmployeeApi'
 import '../index.css'
 
 function Index() {
@@ -31,12 +32,16 @@ function Home() {
                 <div>
                     <Link to='/api-comment' className='nav-txt-white'>Comment</Link>
                 </div>
+                <div>
+                    <Link to='/employee' className='nav-txt-white'>Employee</Link>
+                </div>
             </div>
             <Route path='/' exact component={Index}></Route>
             <Route path='/todo-list' component={Todo}></Route>
             <Route path='/react-index' component={App}></Route>
             <Route path='/person-info' component={PersonInfo}></Route>
             <Route path='/api-comment' component={ApiComment}></Route>
+            <Route path='/employee' component={EmployeeApi}></Route>
         </Router>
     )
 }

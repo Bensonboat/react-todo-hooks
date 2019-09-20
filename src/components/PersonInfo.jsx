@@ -20,6 +20,7 @@ function ShowInfo({ info, removeInfoCard, index, getEditInfoCard }) {
                     }
                 }} style={{ marginTop: '20px', backgroundColor: 'darkred', color: 'white' }}>Delete</button>
                 <button onClick={() => {
+                    console.log(index)
                     document.getElementById('edit_person_card').style.display = 'block'
                     getEditInfoCard(index)
                 }}>Edit</button>
@@ -71,6 +72,8 @@ function PersonInfo() {
         //  STILL WORKING ON IT
         // 
 
+        console.log(index, 'up')
+
         newInfo[index] = {
             name: document.getElementById('editing_name').value,
             email: document.getElementById('editing_email').value,
@@ -79,9 +82,6 @@ function PersonInfo() {
 
         setPerson(newInfo);
         document.getElementById('edit_person_card').style.display = 'none'
-        // newInfo[index].name = document.getElementById('editing_name').value
-        // newInfo[index].email = document.getElementById('editing_email').value
-        // newInfo[index].intro = document.getElementById('editing_intro').value
     }
 
     return (
@@ -97,6 +97,7 @@ function PersonInfo() {
                         removeInfoCard={removeInfoCard}
                         index={index}
                         getEditInfoCard={getEditInfoCard}
+                        updatePersonInfo={updatePersonInfo}
                     />
                     <EditPersonCard
                         updatePersonInfo={updatePersonInfo}
@@ -169,8 +170,8 @@ function CreateNewInfo({ addNewInfo }) {
 
 function EditPersonCard({ updatePersonInfo, index }) {
     return (
-        <div style={{}}>
-            <div id='edit_person_card' style={{ border: 'solid 1px rgba(0,0,0,.3)', width: '400px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', display: 'none' }}>
+        <div>
+            <div id='edit_person_card' style={{ zIndex: 10, border: 'solid 1px rgba(0,0,0,.3)', width: '400px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', display: 'none' }}>
                 <input type="text" className='edit-info-input' placeholder='text' id='editing_name' />
                 <input type="text" className='edit-info-input' placeholder='text' id='editing_email' />
                 <input type="text" className='edit-info-input' placeholder='text' id='editing_intro' />
